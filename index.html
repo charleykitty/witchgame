@@ -1,0 +1,63 @@
+<html>
+
+<head>
+
+  <script src="p5.min.js"></script>
+  <script src="p5.collide2d.min.js"></script>
+  <script src="jumper.js"></script>
+  <script src="rect.js"></script>
+  <script language="javascript" type="text/javascript" src="path/to/p5.sound.js"></script>
+  <style>
+    body {
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+<button onclick="reload()">reset</button>
+
+  <script>
+     function reload() {
+  location.reload();
+}
+   
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    var jumper = new jumper();
+    var obst = new obst();
+    var obst1 = new obst1();
+    var number = 0;
+    var hit = false;
+    var hit2 = false;
+    var witch;
+    var cat;
+    function setup() {
+      bg = loadImage('pixel-landscape.png');
+      witch = loadImage('witch.gif');
+      cat = loadImage('cat.gif');
+      createCanvas(w, h);
+      
+    }
+    function draw() {
+      clear();
+      background(bg);
+      textSize(20);
+      text("score: " + number, 10, 65);
+      text("avoid the crows by pressing the space bar ", 10, 35);
+      jumper.show();
+      jumper.update();
+      obst.show();
+      obst.update();
+      obst1.show();
+      obst1.update();
+      hit = collideRectCircle(obst.x, obst.y, 384, 352, jumper.x, jumper.y, 298, 212);
+      hit2 = collideRectCircle(obst1.x, obst1.y, 384, 352, jumper.x, jumper.y, 298, 212);
+    }
+  </script>
+
+</body>
+
+</html>
